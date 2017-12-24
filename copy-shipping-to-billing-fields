@@ -1,0 +1,36 @@
+//copy shipping address is billing address
+
+var $j = jQuery;
+ 
+$j(document).ready(function(){
+    //set initial state of checkbox to unchecked
+
+    $j( "#bill-to-different-address-checkbox-check" ).change(function() {
+        if($j(this).is(":checked")) {
+            //if checked then copy all values
+            $j("#billing_first_name").val($j('#shipping_first_name').val());
+            $j("#billing_last_name").val($j('#shipping_last_name').val());
+            $j("#billing_address_1").val($j('#shipping_address_1').val());
+            $j("#billing_address_2").val($j('#shipping_address_2').val());
+            $j("#billing_city").val($j('#shipping_city').val());
+            $j("#billing_postcode").val($j('#shipping_postcode').val());
+            $j("#billing_email").val($j('#shipping_email').val());
+        }
+        else {
+            //Clear values when unchecked
+            $j("#billing_first_name").val('');
+            $j("#billing_address_1").val('');
+            $j("#billing_address_2").val('');
+            $j("#billing_city").val('');
+            $j("#billing_postcode").val('');
+            $j("#billing_email").val('');
+        }
+    });
+    
+    
+    //You need to added this code into woocommerce checkout/form-billing.php
+    
+<h3 id="bill-to-different-address-check">
+	<label for="ship-to-different-address-checkbox" class="checkbox"><?php _e( 'Bill to a different address?', 'woocommerce' ); ?></label>
+	<input id="bill-to-different-address-checkbox-check" class="input-checkbox" type="checkbox" name="bill_to_different_address" value="1" />
+</h3> 
